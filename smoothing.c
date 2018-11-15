@@ -4,31 +4,35 @@
 int main()
 {
 	int x[] = {0,-1,3,-2,-4,-6,-7,2,111,-82,15,11,11,6,-2,-15,-19,-19,-19,-12,-4,2,2,-1,-3,2,13,22,27,26};
-	int i, aux, count;
+	int i, aux, nElementos;
 
-	for (i = 0; i < 30; ++i)
+	for (i = 0; i < 30; i++)
 	{
-		printf("%d, ", x[i]);
-		count = abs(x[i] - x[i+1]);
-		if (count > 1)
+		nElementos = abs(abs(x[i]-x[i+1])-1);
+		if (nElementos == 0){
+			printf("%d. ", x[i]);
+		}
+		else if (nElementos > 0)
 		{
+			//printf("Smoothing:");
 			aux = x[i];
-			if ((x[i] - x[i+1]) < 0){
-				while (aux < count-1)
+			if (x[i] > x[i+1])
+			{
+				while (aux > x[i+1])
 				{
-					aux++;
-					printf("%d| ", aux);
-				}
-			}else{
-				while (aux > count-1)
-				{
+					printf("%d, ", aux);
 					aux--;
-					printf("%d| ", aux);
+				}
+			}
+			if (x[i] < x[i+1])
+			{
+				while (aux < x[i+1])
+				{
+					printf("%d, ", aux);
+					aux++;
 				}
 			}
 		}
 	}
-
-
 	return 0;
 }
