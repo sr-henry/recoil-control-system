@@ -14,7 +14,7 @@ int main()
 {
     POINT mouse;
 
-    int cX, cY;
+    int cX, cY, bx, by;
     int i = 0;
 
         int x[] = {0,0,0,-2,-4,-6,-6,1,1,18,16,11,10,6,-2,-14,-20,-19,-19,-12,-4,2,2,-1,-2,1,14,22,26,27};
@@ -26,6 +26,9 @@ int main()
     {
         if (GetKeyState(VK_INSERT))
         {
+            GetCursorPos(&mouse);
+            bx = mouse.x;
+            by = mouse.y;
             while (GetAsyncKeyState(VK_LBUTTON))
             {
                 GetCursorPos(&mouse);
@@ -36,6 +39,7 @@ int main()
                 i++;
                 if (i == 30){ break; }
             }
+            SetCursorPos(bx, by);
             i = 0;
         }   
     }
