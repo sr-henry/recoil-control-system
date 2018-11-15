@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 #define True 1
-#define Time 195
+#define Time 105
 
 int main()
 {
