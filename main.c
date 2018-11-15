@@ -10,13 +10,6 @@
 #define True 1
 #define Time 105
 
-typedef struct $
-{
-    int nBullets;
-    int spray[2][30];
-    int time;   
-}weapon;
-
 int main()
 {
     POINT mouse;
@@ -24,23 +17,8 @@ int main()
     int cX, cY;
     int i = 0;
 
-    weapon ak;
-
-    ak.nBullets = 30;
-    ak.time = 105;
-
-    FILE *cfg = fopen("config.txt", "r");
-    for (i = 0; i < 30; ++i)
-    {
-        fscanf(cfg,"%d", &ak.spray[0][i]);
-    }
-
-    for (i = 0; i < 30; ++i)
-    {
-        fscanf(cfg,"%d", &ak.spray[1][i]);
-    }  
-
-    fclose(cfg);
+    int spray[2][30] = {{0,0,0,-2,-4,-6,-6,1,1,18,16,11,10,6,-2,-14,-20,-19,-19,-12,-4,2,2,-1,-2,1,14,22,26,27},
+                        {0,-19,-16,-22,-24,-26,-22,-16,-9,-5,-3,-4,-2,0,-1,-4,-4,-3,0,1,2,-1,-4,-4,-2,-1,2,5,8,6}};
 
     puts("--Insert--");
 
@@ -51,14 +29,14 @@ int main()
             while (GetAsyncKeyState(VK_LBUTTON))
             {
                 GetCursorPos(&mouse);
-                cX = mouse.x - ak.spray[0][i];
-                cY = mouse.y - ak.spray[1][i];
+                cX = mouse.x - spray[0][i];
+                cY = mouse.y - spray[1][i];
                 SetCursorPos(cX, cY);
                 Sleep(Time);
                 i++;
-                if (i == 30){ break; }
+                if (i == 30){break; }
             }
-            i = 0;
+             i = 0; 
         }  
     }
     return 0;
