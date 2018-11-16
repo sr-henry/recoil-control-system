@@ -10,6 +10,8 @@
 #define True 1
 #define Time 105
 
+    int StartMacro(int spray[2][30]);
+
 int main()
 {
     POINT mouse;
@@ -22,22 +24,22 @@ int main()
 
     puts("--Insert--");
 
-    while(True)
+    while (True)
     {
-        while (GetKeyState(VK_INSERT))
+        while (GetAsyncKeyState(VK_LBUTTON) && GetKeyState(VK_INSERT))
         {
-            while (GetAsyncKeyState(VK_LBUTTON))
-            {
-                GetCursorPos(&mouse);
-                cX = mouse.x - spray[0][i];
-                cY = mouse.y - spray[1][i];
-                SetCursorPos(cX, cY);
-                Sleep(Time);
-                i++;
-                if (i == 30){break; }
-            }
-             i = 0; 
-        }  
+            GetCursorPos(&mouse);
+            cX = mouse.x - spray[0][i];
+            cY = mouse.y - spray[1][i];
+            SetCursorPos(cX, cY);
+            Sleep(Time);
+            i++;
+            if (i == 30){break;}
+        }
+
+        i = 0; 
     }
+    
     return 0;
 }
+
