@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-#include "config.h"
 
 #define True 1
 #define Time 40
@@ -15,8 +14,6 @@ int main()
 	int i = 0;
 	
 	puts("--Insert--");
-
-	printf("%d\n", x_ak47[10]);
 
 	POINT mouse;
 

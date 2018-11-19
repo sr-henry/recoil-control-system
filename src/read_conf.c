@@ -12,18 +12,24 @@ typedef struct $ {
 int main () 
 {
 
-	WEAPON ak47 = {30, x_ak47, y_ak47, 40};
+	WEAPON input;
 
-	FILE *fp = fopen("ak47.dat", "w");
+	FILE *fp = fopen("ak47.dat", "r");
 
 	if (fp == NULL){
 		printf("Erro ao abrir um arquivo!\n");
 		return 0;
 	}
 
-	fwrite (&ak47, sizeof(WEAPON), 1, fp);
+	fread(&input, sizeof(WEAPON), 1, fp);
 
 	fclose(fp);
+
+	int i;
+
+	for (i = 0; i < input.nBullets; ++i){
+		printf("%d/", input.xSpray[i]);
+	}
 
 	return 0;
 }
