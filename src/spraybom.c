@@ -20,10 +20,8 @@ int main()
 
 	POINT mouse;
 
-	while (True)
-	{ 
-		while (GetAsyncKeyState(VK_LBUTTON) && GetKeyState(VK_INSERT))
-		{
+	while (True){ 
+		while (GetAsyncKeyState(VK_LBUTTON) && GetKeyState(VK_INSERT)){
 			GetCursorPos(&mouse);
 			SetCursorPos((mouse.x - spray[0][i]), (mouse.y - spray[1][i]));
 			Sleep(Time);
