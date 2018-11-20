@@ -3,6 +3,8 @@
 #include <windows.h>
 #include "config.h"
 
+#define T 40
+
 typedef struct $ {
 	int nBullets;
 	int *xSpray;
@@ -16,19 +18,22 @@ typedef struct $ {
 int main () 
 {
 
-	WEAPON ak47 = {30, x_ak47, y_ak47, 40};
-	WEAPON m4a4 = {30, x_m4a4, y_m4a4, 40};
-	WEAPON m4a1 = {20, x_m4a1, y_m4a1, 40};
-	WEAPON ump45 = {25, x_ump45, y_ump45, 40};
+	WEAPON ak47 = {30, x_ak47, y_ak47, T};
+	WEAPON m4a4 = {30, x_m4a4, y_m4a4, T};
+	WEAPON m4a1 = {20, x_m4a1, y_m4a1, T};
+	WEAPON ump45 = {25, x_ump45, y_ump45, T};
+	WEAPON famas = {25, x_famas, y_famas, T};
 
 	int op;
 
-	while (1){
-
+	do{
 		MenuLayout();
 		scanf("%d", &op);
 
 		switch(op){
+			case 0:
+				puts("Disconnected");
+				break;
 			case 1:
 				StartMacro(ak47);
 				break;
@@ -41,12 +46,15 @@ int main ()
 			case 4:
 				StartMacro(ump45);
 				break; 
+			case 5:
+				StartMacro(famas);
+				break;
 			default:
 				puts("Opcao Invalida!");
 				system("pause");
 		}
 		
-	}
+	}while (op != 0);
 
 	return 0;
 }
@@ -83,5 +91,7 @@ void MenuLayout()
 	printf("2.M4A4_______\n");
 	printf("3.M4A1-S_____\n");
 	printf("4.UMP45______\n");
+	printf("5.FAMAS______\n");
+	printf("0.QUIT\n");
 	printf("$: ");
 }
