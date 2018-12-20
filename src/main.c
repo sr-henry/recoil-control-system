@@ -44,7 +44,7 @@ int main ()
 					Sleep(17);
 				}
 
-				for (y = 0; y < 37; ++y){
+				for (y = 0; y < 33; ++y){
 					GetCursorPos(&mouse);
 					SetCursorPos(mouse.x + 4, mouse.y + 1);
 					Sleep(9.54);
@@ -52,7 +52,7 @@ int main ()
 
 				for (y = 0; y < 7; ++y){
 					GetCursorPos(&mouse);
-					SetCursorPos(mouse.x + 18, mouse.y - 1);
+					SetCursorPos(mouse.x + 9, mouse.y - 1);
 					Sleep(5.2);
 				}
 
@@ -68,7 +68,7 @@ int main ()
 					Sleep(7.57);
 				}
 
-				puts(".................................");
+				puts("~#: Reload!");
 				Sleep(2000);
 				break;
 			}
