@@ -29,6 +29,7 @@ int main ()
 		if (GetAsyncKeyState(VK_HOME)){ return 0; }
 
 		while (GetAsyncKeyState(VK_LBUTTON) && GetKeyState(VK_INSERT)){
+
 			GetCursorPos(&mouse);
 		
 			SetCursorPos(mouse.x, mouse.y + 1);
@@ -38,20 +39,40 @@ int main ()
 			if (i == 515){
 
 				for (y = 0; y < 28; ++y){
-					SetCursorPos(mouse.x, mouse.y + 1);
-					for (x = 0; x < 3; ++x){
-						SetCursorPos(mouse.x - 1, mouse.y);
-						Sleep(1);
-					}
-					Sleep(1);
 					GetCursorPos(&mouse);
+					SetCursorPos(mouse.x - 3, mouse.y + 1);
+					Sleep(17);
 				}
 
-				puts("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+				for (y = 0; y < 33; ++y){
+					GetCursorPos(&mouse);
+					SetCursorPos(mouse.x + 4, mouse.y + 1);
+					Sleep(9.54);
+				}
+
+				for (y = 0; y < 7; ++y){
+					GetCursorPos(&mouse);
+					SetCursorPos(mouse.x + 9, mouse.y - 1);
+					Sleep(5.2);
+				}
+
+				for (y = 0; y < 31; ++y){
+					GetCursorPos(&mouse);
+					SetCursorPos(mouse.x, mouse.y + 1);
+					Sleep(16);
+				}
+
+				for (y = 0; y < 66; ++y){
+					GetCursorPos(&mouse);
+					SetCursorPos(mouse.x - 4, mouse.y - 1);
+					Sleep(7.57);
+				}
+
+				puts("~#: Reload!");
 				Sleep(2000);
 				break;
 			}
-			printf("%d\n", i);	
+			//printf("%d\n", i);	
 		}
 
 		i = 0; 
