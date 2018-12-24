@@ -1,13 +1,3 @@
-/*
-_____Config_____
-+ rawinput [off]
-+ sensi	   [1.1]
-+ 900 dpi
-+ 500 polling
-+ 1024 x 768 
-_______________
-*/
-
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
@@ -22,7 +12,7 @@ int main ()
 	POINT mouse;
 	int i = 0;
 
-	int x,y;
+	int x,y, d = 2;
  
 	while (1){
 
@@ -31,44 +21,47 @@ int main ()
 		while (GetAsyncKeyState(VK_LBUTTON) && GetKeyState(VK_INSERT)){
 
 			GetCursorPos(&mouse);
-		
-			SetCursorPos(mouse.x, mouse.y + 1);
+
+			if (i == 4){
+				d--;
+			}
+
+			SetCursorPos(mouse.x, mouse.y + d);
 			Sleep(1);
+
 			i++;
 
-			if (i == 515){
-
+			if (i == 500){
+				printf("%d\n", i);
 				for (y = 0; y < 28; ++y){
 					GetCursorPos(&mouse);
 					SetCursorPos(mouse.x - 3, mouse.y + 1);
-					Sleep(17);
-				}
+					Sleep(17.85);
+					i++;
+				}printf("%d\n", i);
 
-				for (y = 0; y < 33; ++y){
+				for (y = 0; y < 30; ++y){
 					GetCursorPos(&mouse);
-					SetCursorPos(mouse.x + 4, mouse.y + 1);
-					Sleep(9.54);
-				}
-
-				for (y = 0; y < 7; ++y){
-					GetCursorPos(&mouse);
-					SetCursorPos(mouse.x + 9, mouse.y - 1);
-					Sleep(5.2);
-				}
+					SetCursorPos(mouse.x + 5, mouse.y + 1);
+					Sleep(16.66);
+					i++;
+				}printf("%d\n", i);
 
 				for (y = 0; y < 31; ++y){
 					GetCursorPos(&mouse);
 					SetCursorPos(mouse.x, mouse.y + 1);
-					Sleep(16);
-				}
+					Sleep(16.12);
+					i++;
+				}printf("%d\n", i);
 
 				for (y = 0; y < 66; ++y){
 					GetCursorPos(&mouse);
 					SetCursorPos(mouse.x - 4, mouse.y - 1);
 					Sleep(7.57);
-				}
+					i++;
+				}printf("%d\n", i);
 
-				puts("~#: Reload!");
+				puts("#####################");
 				Sleep(2000);
 				break;
 			}
@@ -76,9 +69,8 @@ int main ()
 		}
 
 		i = 0; 
+		d = 2;
 	}
 
 	return 0;
 }
-
-
