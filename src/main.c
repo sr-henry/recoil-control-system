@@ -2,8 +2,6 @@
 #include <string.h>
 #include <windows.h>
 
-
-
 void trivela(int x, int y, int px, float t){
 	POINT mouse;
 	int i = 1;
@@ -20,7 +18,7 @@ void trivela(int x, int y, int px, float t){
 int main () 
 {
 
-	puts("--Press Insert ON/OFF--");
+	puts("Press Insert ON | OFF");
  
 	while (1){
 
@@ -28,13 +26,22 @@ int main ()
 
 		while (GetAsyncKeyState(VK_LBUTTON) && GetKeyState(VK_INSERT)){
 
+			//	AK47
 				trivela( 0,	 1, 500, 1);
 				trivela(-3,	 1, 28, 17.85);
 				trivela( 5,  1, 30, 16.66);
 				trivela( 0,  1, 31, 16.12);
 				trivela(-4,	-1, 66, 7.57);
 
+			/*	M4A4
+				trivela( 0,	 1, 300, 2);
+				trivela(-3,	 1, 34, 23.52);
+				trivela(3, 1, 34, 23.52);
+			*/
+
+
 		}
+
 	}
 
 	return 0;
