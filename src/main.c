@@ -11,7 +11,7 @@
 	void Navigation();
 	void Switch(int index);
 	void UpdateMenu();
-	void MouseMove(int x, int y, int px, float t);
+	void MouseMove(int x, int y, int px, float t, bool haste);
 	void RCS_AK47();
 	void RCS_M4A4();
 
@@ -93,9 +93,9 @@ void UpdateMenu(){
 
 	SetConsoleTextAttribute(hConsole, DEFAULT);
 
-	printf("--------R.C.S--------\n");
+	printf("________R.C.S________\n");
 	printf("1.1(jogo) | 900(dpi)\n");
-	printf("---------------------\n");
+
 	if (M_Index == IAK47){
 		SetConsoleTextAttribute(hConsole, SELECT);
 		printf("AK-47\t\t[%s]\n", bools[!ak47]);
@@ -114,7 +114,7 @@ void UpdateMenu(){
 
 }
 
-void MouseMove(int x, int y, int px, float t){
+void MouseMove(int x, int y, int px, float t, bool haste){
 	POINT mouse;
 	int i = 1;
 	while (GetAsyncKeyState(VK_LBUTTON)){
@@ -122,20 +122,26 @@ void MouseMove(int x, int y, int px, float t){
 		SetCursorPos(mouse.x + x, mouse.y + y);
 		Sleep(t);
 		i++;
+		if (haste){
+			if (i == 5){
+				y--;
+			}
+		}
 		if (i == px){break;}
 	}
+
 }
 
 void RCS_AK47(){
-	MouseMove( 0,	 1, 500, 1);
-	MouseMove(-3,	 1, 28, 17.85);
-	MouseMove( 5,  1, 30, 16.66);
-	MouseMove( 0,  1, 31, 16.12);
-	MouseMove(-4,	-1, 66, 7.57);	
+	MouseMove( 0,	 2, 443, 1, true);
+	MouseMove(-5,	 1, 28, 17.85, false);
+	MouseMove( 7,  1, 30, 16.66, false);
+	MouseMove( 0,  1, 31, 16.12, false);
+	MouseMove(-3,	-1, 66, 7.57, false);	
 }
 
 void RCS_M4A4(){
-	MouseMove( 0,	 1, 300, 2);
-	MouseMove(-3,	 1, 34, 23.52);
-	MouseMove(3, 1, 34, 23.52);
+	MouseMove( 0,	 2, 300, 2, true);
+	MouseMove(-3,	 1, 34, 23.52, false);
+	MouseMove(3, 1, 34, 23.52, false);
 }
