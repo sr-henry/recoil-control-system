@@ -127,8 +127,10 @@ void MouseMove(int x, int y, int px, float t, bool haste){
 				y--;
 			}
 		}
-		if (i == px){break;}
+		if (i == px){ break;}
 	}
+
+
 
 }
 
@@ -141,7 +143,8 @@ void RCS_AK47(){
 }
 
 void RCS_M4A4(){
-	MouseMove( 0,	 2, 300, 2, true);
-	MouseMove(-3,	 1, 34, 23.52, false);
-	MouseMove(3, 1, 34, 23.52, false);
+	MouseMove( 0,	 2, 380, 1, true);
+	MouseMove(-1,	 0, 152, 6.97, false);
+	MouseMove( 5, 	 1, 62, 17.096, false);
 }
+
