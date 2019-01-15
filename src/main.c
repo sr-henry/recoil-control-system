@@ -123,15 +123,10 @@ void MouseMove(int x, int y, int px, float t, bool haste){
 		Sleep(t);
 		i++;
 		if (haste){
-			if (i == 5){
-				y--;
-			}
+			if (i == 5){y = 1;}
 		}
-		if (i == px){ break;}
+		if (i == px){break;}
 	}
-
-
-
 }
 
 void RCS_AK47(){

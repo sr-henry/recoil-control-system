@@ -25,7 +25,7 @@ int main ()
 
 		i = 0;
 
-	}//400
+	}
 
 	return 0;
 }

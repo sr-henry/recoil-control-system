@@ -1,7 +1,7 @@
-#include<windows.h>
-#include<stdio.h>
+#include <windows.h>
+#include <stdio.h>
 
-int main(int argc, char** argv)
+int main()
 {
     FARPROC pGetPixel;
 
@@ -12,16 +12,22 @@ int main(int argc, char** argv)
         HDC _hdc = GetDC(NULL);
         if(_hdc)
         {
-            POINT _cursor;
-            GetCursorPos(&_cursor);
-            COLORREF _color = (*pGetPixel) (_hdc, _cursor.x, _cursor.y);
-            int _red = GetRValue(_color);
-            int _green = GetGValue(_color);
-            int _blue = GetBValue(_color);
+            while(1){
+                POINT _cursor;
+                GetCursorPos(&_cursor);
+                COLORREF _color = (*pGetPixel) (_hdc, _cursor.x+326, _cursor.y+157);
+                int _red = GetRValue(_color);
+                int _green = GetGValue(_color);
+                int _blue = GetBValue(_color);
 
-            printf("Red: 0x%02x\n", _red);
-            printf("Green: 0x%02x\n", _green);
-            printf("Blue: 0x%02x\n", _blue);
+                printf("Red:%d\n", _red);
+                printf("Green: %d\n", _green);
+                printf("Blue: %d\n\n", _blue);
+
+                Sleep(100);
+
+            }
+            
         }
         FreeLibrary(_hGDI);
     }
