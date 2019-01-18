@@ -16,171 +16,171 @@ int main()
 			for (i = 0; i < 100; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x, mouse.y+1);
-				Sleep(20);
+				Sleep(1.070);
 			}
 			/*-----------------------------------------*/
 			for (i = 0; i < 4; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x + 1, mouse.y+16);
-				Sleep(20);
+				Sleep(26.750);
 			}
 		
 			for (i = 0; i < 8; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x + 1, mouse.y+9);
-				Sleep(20);
+				Sleep(13.375);
 			}
 
 			for (i = 0; i < 13; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x + 1, mouse.y+6);
-				Sleep(20);
+				Sleep(8.231);
 			}
 
 			for (i = 0; i < 13; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x + 1, mouse.y+5);
-				Sleep(20);
+				Sleep(8.231);
 			}
 
 			for (i = 0; i < 2; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x -1, mouse.y+22);
-				Sleep(20);
+				Sleep(53.500);
 			}
 
 			for (i = 0; i < 2; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x -1, mouse.y+9);
-				Sleep(20);
+				Sleep(53.500);
 			}
 			/*--------------------------------------*/
 			for (i = 0; i < 12; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x -3, mouse.y+1);
-				Sleep(20);
+				Sleep(8.917);
 			}
 
 			for (i = 0; i < 8; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x -5, mouse.y+1);
-				Sleep(20);
+				Sleep(13.375);
 			}
 
 			for (i = 0; i < 11; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x -2, mouse.y+1);
-				Sleep(20);
+				Sleep(9.727);
 			}
 
 			for (i = 0; i < 5; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x -4, mouse.y+1);
-				Sleep(20);
+				Sleep(21.400);
 			}
 
 			for (i = 0; i < 21; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x - 1, mouse.y);
-				Sleep(20);
+				Sleep(5.095);
 			}
 
 			for (i = 0; i < 2; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x +2, mouse.y+1);
-				Sleep(20);
+				Sleep(53.500);
 			}
 
 			for (i = 0; i < 12; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x +3, mouse.y+1);
-				Sleep(20);
+				Sleep(8.917);
 			}
 
 			for (i = 0; i < 11; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x +4, mouse.y+1);
-				Sleep(20);
+				Sleep(9.727);
 			}
 
 			for (i = 0; i < 8; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x +5, mouse.y+1);
-				Sleep(20);
+				Sleep(13.375);
 			}
 
 			for (i = 0; i < 40; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x +1, mouse.y);
-				Sleep(20);
+				Sleep(2.675);
 			}
 
 			for (i = 0; i < 2; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x +13, mouse.y- 1);
-				Sleep(20);
+				Sleep(53.500);
 			}
 
 			for (i = 0; i < 5; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x +1, mouse.y- 1);
-				Sleep(20);
+				Sleep(21.400);
 			}
 
 			for (i = 0; i < 2; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x + 2, mouse.y - 1);
-				Sleep(20);
+				Sleep(53.500);
 			}
 			/*--------------------------------------*/
 
 			for (i = 0; i < 4; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x -1, mouse.y + 2);
-				Sleep(20);
+				Sleep(26.750);
 			}
 
 			for (i = 0; i < 2; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x - 1, mouse.y + 5);
-				Sleep(20);
+				Sleep(53.500);
 			}
 
 			for (i = 0; i < 2; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x + 1, mouse.y + 4);
-				Sleep(20);
+				Sleep(53.500);
 			}
 
 			for (i = 0; i < 3; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x + 1, mouse.y + 3);
-				Sleep(20);
+				Sleep(35.667);
 			}
 			/*---------------------------------------*/
 
 			for (i = 0; i < 5; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x - 6, mouse.y -1);
-				Sleep(20);
+				Sleep(21.400);
 			}
 
 			for (i = 0; i < 13; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x - 4, mouse.y -1);
-				Sleep(20);
+				Sleep(8.231);
 			}
 
 			for (i = 0; i < 25; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x - 2, mouse.y -1);
-				Sleep(20);
+				Sleep(4.280);
 			}
 
 			for (i = 0; i < 17; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x - 4, mouse.y -1);
-				Sleep(20);
+				Sleep(6.294);
 			}
 
 			return 1;
