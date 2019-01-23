@@ -1,145 +1,51 @@
-#include <stdio.h>
 #include <windows.h>
+#include <stdio.h>
 #include <stdbool.h>
 
-#define DEFAULT 15
-#define SELECT	2
+#define AK 3000
 
-#define IAK47 0
-#define IM4A4 1
+	void 	MouseMove		(int Dx, int Dy, int M, float T);
+	float 	CalculateDelay	(int gunTime, int len, float M);
 
-	void Navigation();
-	void Switch(int index);
-	void UpdateMenu();
-	void MouseMove(int x, int y, int px, float t, bool haste);
-	void RCS_AK47();
-	void RCS_M4A4();
+int main()
+{
 
-int M_Index = 0;
+	int dx[] = {0,1,1,1,1,-1,-1,-3,-5,-2,-4,-1,2,3,4,5,1,13,1,2,-1,-1,1,1,-6,-4,-2,-4};
+	int dy[] = {1,16,9,6,5,22,9,1,1,1,1,0,1,1,1,1,0,-1,-1,-1,2,5,4,3,-1,-1,-1,-1};
+	int  M[] = {100,4,8,13,13,2,2,12,8,11,5,21,2,12,11,8,40,2,5,2,4,2,2,3,5,13,25,17};
 
-bool ak47 = false;
-bool m4a4 = false;
+	int len = sizeof(dx)/sizeof(dx[0]);
 
-char bools[2][3] = {{"ON"},{"OFF"}};
+	int i = 0;
 
-int main(){
-	UpdateMenu();
-	Navigation();
-}
-
-void Navigation(){
-
-	while (true){
-
-		if (GetAsyncKeyState(VK_UP)){
-			if (M_Index > 0){
-				M_Index--;
-				UpdateMenu();
-			}
+	while(true){
+		while(GetAsyncKeyState(VK_LBUTTON) && GetKeyState(VK_HOME)){
+			MouseMove(dx[i], dy[i], M[i], CalculateDelay(AK, len, M[i]));
+			i++;
+			if (i == len){break;}
 		}
-		if (GetAsyncKeyState(VK_DOWN)){
-			if (M_Index < 1){
-				M_Index++;
-				UpdateMenu();
-			}
-
-		}
-		if (GetAsyncKeyState(VK_RIGHT)){
-			Switch(M_Index);
-			UpdateMenu();
-		}
-		if (GetAsyncKeyState(VK_LEFT)){
-			Switch(M_Index);
-			UpdateMenu();
-		}
-
-		if (ak47){
-			RCS_AK47();
-		}
-		if (m4a4){
-			RCS_M4A4();
-		}
-		
-		Sleep(150);
+		i = 0;
 	}
 
-}
-
-void Switch(int index){
-
-	switch(index){
-		case IAK47:
-			ak47 = !ak47;
-			if (m4a4){
-				m4a4 = !m4a4;
-			}
-		break;
-
-		case IM4A4:
-			m4a4 = !m4a4;
-			if (ak47){
-				ak47 = !ak47;
-			}
-		break;
-	}
-
+	return 0;
 }
 
 
-void UpdateMenu(){
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-	system("cls");
-
-	SetConsoleTextAttribute(hConsole, DEFAULT);
-
-	printf("________R.C.S________\n");
-	printf("1.1(jogo) | 900(dpi)\n");
-
-	if (M_Index == IAK47){
-		SetConsoleTextAttribute(hConsole, SELECT);
-		printf("AK-47\t\t[%s]\n", bools[!ak47]);
-	}else{
-		SetConsoleTextAttribute(hConsole, DEFAULT);
-		printf("AK-47\t\t[%s]\n", bools[!ak47]);
-	}
-
-	if (M_Index == IM4A4){
-		SetConsoleTextAttribute(hConsole, SELECT);
-		printf("M4A4\t\t[%s]\n", bools[!m4a4]);
-	}else{
-		SetConsoleTextAttribute(hConsole, DEFAULT);
-		printf("M4A4\t\t[%s]\n", bools[!m4a4]);
-	}
-
-}
-
-void MouseMove(int x, int y, int px, float t, bool haste){
+void MouseMove(int Dx, int Dy, int M, float T){
 	POINT mouse;
-	int i = 1;
+	int count = 0;
 	while (GetAsyncKeyState(VK_LBUTTON)){
 		GetCursorPos(&mouse);
-		SetCursorPos(mouse.x + x, mouse.y + y);
-		Sleep(t);
-		i++;
-		if (haste){
-			if (i == 5){y = 1;}
-		}
-		if (i == px){break;}
+		SetCursorPos(mouse.x + Dx, mouse.y + Dy);
+		Sleep(T);
+		count++;
+		if (count == M){break;}
 	}
 }
 
-void RCS_AK47(){
-	MouseMove( 0,	 2, 443, 1, true);
-	MouseMove(-5,	 1, 28, 17.85, false);
-	MouseMove( 7,  1, 30, 16.66, false);
-	MouseMove( 0,  1, 31, 16.12, false);
-	MouseMove(-3,	-1, 66, 7.57, false);	
+float CalculateDelay(int gunTime, int len, float M){
+	float result = (gunTime/len)/M;
+	return result;
 }
 
-void RCS_M4A4(){
-	MouseMove( 0,	 2, 380, 1, true);
-	MouseMove(-1,	 0, 152, 6.97, false);
-	MouseMove( 5, 	 1, 62, 17.096, false);
-}
 

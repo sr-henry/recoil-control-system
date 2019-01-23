@@ -1,24 +1,47 @@
 #include <stdio.h>
 #include <windows.h>
 
+void SetLeftClick(){
+    puts("SET LEFT CLICK");
+
+    INPUT    Input= {0};
+    Input.type        = INPUT_MOUSE;
+    Input.mi.dwFlags  = MOUSEEVENTF_LEFTDOWN;
+    SendInput( 1, &Input, sizeof(INPUT) );
+}
+
+void UnSetLeftClick(){
+    puts("UNSET LEFT CLICK");
+
+    INPUT    Input= {0};
+    ZeroMemory(&Input,sizeof(INPUT));
+    Input.type        = INPUT_MOUSE;
+    Input.mi.dwFlags  = MOUSEEVENTF_LEFTUP;
+    SendInput( 1, &Input, sizeof(INPUT) );
+}
+
 int main()
 {
 	POINT mouse;
 
 	int i, j;
 
-	printf("config\n");
+	printf("INSERT\n");
 
 
 	while(1){
 		if (GetKeyState(VK_INSERT)){
-				
+			
+			SetLeftClick();
+
 			for (i = 0; i < 100; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x, mouse.y+1);
 				Sleep(1.070);
 			}
-			/*-----------------------------------------*/
+			/*-----------------------------------------
+				f(x) = 
+			*/
 			for (i = 0; i < 4; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x + 1, mouse.y+16);
@@ -54,7 +77,9 @@ int main()
 				SetCursorPos(mouse.x -1, mouse.y+9);
 				Sleep(53.500);
 			}
-			/*--------------------------------------*/
+			/*--------------------------------------
+				f(y) = 
+			*/
 			for (i = 0; i < 12; ++i){
 				GetCursorPos(&mouse);
 				SetCursorPos(mouse.x -3, mouse.y+1);
@@ -132,7 +157,9 @@ int main()
 				SetCursorPos(mouse.x + 2, mouse.y - 1);
 				Sleep(53.500);
 			}
-			/*--------------------------------------*/
+			/*--------------------------------------
+				f(x) = 
+			*/
 
 			for (i = 0; i < 4; ++i){
 				GetCursorPos(&mouse);
@@ -157,7 +184,9 @@ int main()
 				SetCursorPos(mouse.x + 1, mouse.y + 3);
 				Sleep(35.667);
 			}
-			/*---------------------------------------*/
+			/*---------------------------------------
+				f(y) = 
+			*/
 
 			for (i = 0; i < 5; ++i){
 				GetCursorPos(&mouse);
@@ -183,15 +212,9 @@ int main()
 				Sleep(6.294);
 			}
 
+			UnSetLeftClick();
 			return 1;
 		}
 	}
-
-		
-
-
-
-
-
 	return 0;
 }
