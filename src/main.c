@@ -43,11 +43,9 @@ void ExecConfig(int *dx, int *dy, int *M, int T, int len){
 }
 
 void MouseMove(int Dx, int Dy, int M, float T){
-	POINT mouse;
 	int count = 0;
 	while(GetAsyncKeyState(VK_LBUTTON)){
-		GetCursorPos(&mouse);
-		SetCursorPos(mouse.x + Dx, mouse.y + Dy);
+		mouse_event(MOUSEEVENTF_MOVE, Dx, Dy, 0, 0);
 		Sleep(T);
 		count++;
 		if (count == M){break;}
