@@ -4,9 +4,40 @@
 #include <iostream>
 #include <list>
 
-#pragma warning disable C4244
+#pragma warning (disable : C4244)
 
 using namespace std;
+
+void SavePattern(float **pattern, int *multiplier, int len) {
+
+	cout << "\n[+] Salvando\n";
+
+	ofstream recoil_pattern;
+	recoil_pattern.open("config.txt");
+
+	recoil_pattern << "float recoil[" << len << "]" << "[2] = {\n";
+
+	for (int i = 0; i < len; i++) {
+		recoil_pattern <<"\t{" << pattern[i][0] << "," << pattern[i][1] <<"},\n";
+	}
+
+	recoil_pattern << "};";
+
+	recoil_pattern << "float recoil[" << len << "] = {";
+
+	for (int i = 0; i < len; i++) {
+		recoil_pattern << multiplier[i] << ", ";
+	}
+
+	recoil_pattern << "};";
+
+
+	recoil_pattern.close();
+	
+	free(pattern);
+	free(multiplier);
+
+}
 
 float **StandardTemplate(int Linhas) {
 
@@ -116,11 +147,9 @@ void Smoothing(float **toSmooth, int len) {
 
 		CalculateSmooth(&toSmooth[i][0], &toSmooth[i][1], multiplier, i);
 
-		cout << toSmooth[i][0] << "\t" << toSmooth[i][1] << "\t" << multiplier[i] << "\n";
 	}
 
-	free(toSmooth);
-	free(multiplier);
+	SavePattern(toSmooth, multiplier, len);
 
 }
 
@@ -143,12 +172,6 @@ void BuildPattern(list <int> x, list <int> y)
 	for (i = y.begin(); i != y.end(); i++) {
 		pattern[index][1] = *i;
 		index++;
-	}
-
-	cout << "DX\t\t\tDY\n";
-
-	for (int i = 0; i < size; i++) {
-		cout << pattern[i][0] << "\t\t\t" << pattern[i][1] << "\n";
 	}
 
 	Smoothing(pattern, size);

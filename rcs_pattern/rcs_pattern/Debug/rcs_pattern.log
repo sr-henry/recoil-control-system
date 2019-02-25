@@ -1,13 +1,13 @@
 ﻿  rcs_pattern.cpp
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(7): warning C4083: esperado '('; encontrado identificador 'disable'
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(42): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(48): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(54): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(60): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(83): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(104): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(33): warning C4101: 'ret_x': variável local não referenciada
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(33): warning C4101: 'ret_y': variável local não referenciada
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(137): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
-c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(144): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(7): warning C4083: esperado ')'; encontrado identificador 'C4244'
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(73): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(79): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(85): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(91): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(114): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(135): warning C4244: '=': conversão de 'float' para 'int', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(64): warning C4101: 'ret_x': variável local não referenciada
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(64): warning C4101: 'ret_y': variável local não referenciada
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(166): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs_pattern\rcs_pattern\rcs_pattern.cpp(173): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
   rcs_pattern.vcxproj -> C:\Users\henri\Documents\GitHub\c_norecoil\rcs_pattern\Debug\rcs_pattern.exe
