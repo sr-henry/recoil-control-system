@@ -23,95 +23,98 @@ float **StandardTemplate(int Linhas) {
 	return m;
 }
 
-float CalculateSmooth(float x, float y, int *multiplier, int index) {
+void CalculateSmooth(float *x, float *y, int *multiplier, int index) {
 
 	float smt;
 
-	float mod_x = abs(x);
-	float mod_y = abs(y);
+	float mod_x = abs(*x);
+	float mod_y = abs(*y);
 
 	float ret_x, ret_y;
 
-	if (x == 0 && y == 0) {
+	if (*x == 0 && *y == 0) {
 		multiplier[index] = 0;
-		return 0, 0;
+		*x = 0;
+		*y = 0;
 	}
 
-	if (x == 0 && y > 0) {
+	if (*x == 0 && *y > 0) {
 		multiplier[index] = mod_y;
-		return 0, 1;
+		*x = 0;
+		*y = 1;
 	}
 
-	if (x == 0 && y < 0) {
+	if (*x == 0 && *y < 0) {
 		multiplier[index] = mod_y;
-		return 0, -1;
+		*x = 0;
+		*y = -1;
 	}
 
-	if (x > 0 && y == 0) {
+	if (*x > 0 && *y == 0) {
 		multiplier[index] = mod_x;
-		return 1, 0;
+		*x = 1;
+		*y = 0;
 	}
 
-	if (x < 0 && y == 0) {
+	if (*x < 0 && *y == 0) {
 		multiplier[index] = mod_x;
-		return -1, 0;
+		*x = -1;
+		*y = 0;
 	}
 
 	if (mod_x >= mod_y && mod_y != 0) {
 
 		smt = mod_x / mod_y;
 
-		if (x < 0) {
-			ret_x = -smt;
+		if (*x < 0) {
+			*x = -smt;
 		}
 		else {
-			ret_x = smt;
+			*x = smt;
 		}
 
-		if (y < 0) {
-			ret_y = -1;
+		if (*y < 0) {
+			*y = -1;
 		}
 		else {
-			ret_y = 1;
+			*y = 1;
 		}
 
 		multiplier[index] = mod_y;
 
-		return ret_x, ret_y;
 	}
 
 	if (mod_y >= mod_x && mod_x != 0) {
 
 		smt = mod_y / mod_x;
 
-		if (x < 0) {
-			ret_x = -1;
+		if (*x < 0) {
+			*x = -1;
 		}
 		else {
-			ret_x = 1;
+			*x = 1;
 		}
-		if (y < 0) {
-			ret_y = -smt;
+		if (*y < 0) {
+			*y = -smt;
 		}
 		else {
-			ret_y = smt;
+			*y = smt;
 		}
 
 		multiplier[index] = mod_x;
 
-		return ret_x, ret_y;
 	}
 }
 
 void Smoothing(float **toSmooth, int len) {
 
-	cout << "\n[+] Smoothing...\n";
+	cout << "\n[+] Smoothing\n";
 
 	int *multiplier = (int *)malloc(len * sizeof(int));
 
 	for (int i = 0; i < len; i++) {
 
-		toSmooth[i][0], toSmooth[i][1] = CalculateSmooth(toSmooth[i][0], toSmooth[i][1], multiplier, i);
+		CalculateSmooth(&toSmooth[i][0], &toSmooth[i][1], multiplier, i);
 
 		cout << toSmooth[i][0] << "\t" << toSmooth[i][1] << "\t" << multiplier[i] << "\n";
 	}
@@ -140,6 +143,12 @@ void BuildPattern(list <int> x, list <int> y)
 	for (i = y.begin(); i != y.end(); i++) {
 		pattern[index][1] = *i;
 		index++;
+	}
+
+	cout << "DX\t\t\tDY\n";
+
+	for (int i = 0; i < size; i++) {
+		cout << pattern[i][0] << "\t\t\t" << pattern[i][1] << "\n";
 	}
 
 	Smoothing(pattern, size);
@@ -192,14 +201,16 @@ void Tracking() {
 
 	}
 
-	cout << "\n[+] Detected Pattern\n";
+	cout << "\n[+] Padrao Detectado\n";
 
 	BuildPattern(x, y);
 }
 
 int main()
 {
-	cout << "1.Abra uma img do padrao do recoil.\n2.Ative o programa (F4).\n3.Clique nos pontos dos tiros.\n\n";
+	cout << "[*] Pattern Generator for Recoil Control System\n\n";
+	cout << "[?] Como usar:\n";
+	cout << "\t1. Abra uma img do padrao do recoil.\n\t2. Ative o programa (F4).\n\t3. Clique nos pontos dos tiros.\n\n";
 	cout << "F4 - Ativa & Desativa rastreamento\n\n";
 
 	while (true) {
