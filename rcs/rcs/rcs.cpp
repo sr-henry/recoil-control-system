@@ -4,42 +4,73 @@
 
 using namespace std;
 
-float recoil[30][2] = {
-	{0,0},
-	{-1,8},
-	{1,32},
-	{1,21},
-	{1,6.85714},
-	{1,4},
-	{1,4.66667},
-	{-1,15.5},
-	{-1.11765,1},
-	{-3.88889,1},
-	{-7.75,1},
-	{-2.44444,1},
-	{-19,1},
-	{-4,1},
-	{2.33333,1},
-	{3.85714,1},
-	{5.14286,1},
-	{7.4,1},
-	{34,1},
-	{5,-1},
-	{6,-1},
-	{-1,1.5},
-	{-1,3},
-	{1,2.5},
-	{1.2,1},
-	{-6,1},
-	{-4.6,-1},
-	{-4.88889,-1},
-	{-3.53333,-1},
-	{-4.09091,-1},
-}; 
+typedef struct {
+	int		magazineSize;
+	float	**pattern;
+	int		*multiplier;
+}weapon;
 
-int multiplier[30] = { 0, 3, 1, 2, 7, 12, 9, 2, 17, 9, 4, 9, 1, 3, 3, 7, 7, 5, 1, 5, 1, 2, 3, 2, 5, 1, 5, 9, 15, 11, };
 
-void MouseMove(int Dx, int Dy, int M, float T) {
+float **StandardPattern(int magazineSize) {
+
+	int i, j;
+
+	float **m = (float**)malloc(magazineSize * sizeof(float*));
+
+	for (i = 0; i < magazineSize; i++) {
+		m[i] = (float*)malloc(2 * sizeof(float));
+		for (j = 0; j < 2; j++) {
+			m[i][j] = 0.0;
+		}
+	}
+	return m;
+}
+
+void LoadParttern(weapon *current) {
+
+	FILE *fp;
+	
+	errno_t err = fopen_s(&fp, "config.rcs", "r");
+
+	if (err != 0) {
+		cout << "[-] Pattern not found\n";
+		return;
+	}
+
+	cout << "[+] Pattern found\n";
+
+	int size, mult;
+
+	float cord;
+
+	fscanf_s(fp, "%d", &size);
+
+	current->magazineSize = size;
+
+	current->pattern = StandardPattern(size);
+
+	current->multiplier = (int *)malloc(size * sizeof(int));
+
+	for (int i = 0; i < size; i++) {
+		fscanf_s(fp, "%f", &cord);
+		current->pattern[i][0] = cord;
+	}
+
+	for (int i = 0; i < size; i++) {
+		fscanf_s(fp, "%f", &cord);
+		current->pattern[i][1] = cord;
+	}
+
+	for (int i = 0; i < size; i++) {
+		fscanf_s(fp, "%d", &mult);
+		current->multiplier[i] = mult;
+	}
+
+	fclose(fp);
+
+}
+
+void MouseMove(float Dx, float Dy, int M, float T) {
 	int count = 0;
 	while (count != M) {
 		mouse_event(MOUSEEVENTF_MOVE, Dx, Dy, 0, 0);
@@ -48,17 +79,43 @@ void MouseMove(int Dx, int Dy, int M, float T) {
 	}
 }
 
+float CalculateTick(int rpm, int magazineSize, float multiplier) {
+	float tick = (((magazineSize * 60 * 1000) / rpm) / magazineSize) / multiplier;
+	return tick;
+}
+
+DWORD CalculateDelay(int gunTime, int len, float M) {
+	DWORD result = (gunTime / len) / M;
+	return result;
+}
+
 int main()
 {
+
+	weapon current;
+
+	LoadParttern(&current);
+
+	cout << "[X\tY\tM]\n";
+
+	for (int i = 0; i < current.magazineSize; i++) {
+		cout << current.pattern[i][0] << "\t" << current.pattern[i][1] << "\t" << current.multiplier[i] << "\n";
+	}
+
 	int shot_i = 0;
 
-	Sleep(1500);
+	Sleep(2000);
 
-	while (shot_i < 30) {
+	while (shot_i < current.magazineSize) {
 
-		MouseMove(recoil[shot_i][0], recoil[shot_i][1], multiplier[shot_i], 10);
+		MouseMove(current.pattern[shot_i][0], current.pattern[shot_i][1], current.multiplier[shot_i], CalculateDelay(3000, current.magazineSize, current.multiplier[shot_i]));
 
 		shot_i++;
 	}
 
+
+	free(current.pattern);
+	free(current.multiplier);
+
+	return 0;
 }

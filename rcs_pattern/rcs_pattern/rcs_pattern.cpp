@@ -13,24 +13,25 @@ void SavePattern(float **pattern, int *multiplier, int len) {
 	cout << "\n[+] Salvando\n";
 
 	ofstream recoil_pattern;
-	recoil_pattern.open("config.txt");
+	recoil_pattern.open("config.rcs");
 
-	recoil_pattern << "float recoil[" << len << "]" << "[2] = {\n";
-
-	for (int i = 0; i < len; i++) {
-		recoil_pattern <<"\t{" << pattern[i][0] << "," << pattern[i][1] <<"},\n";
-	}
-
-	recoil_pattern << "};";
-
-	recoil_pattern << "\n\nfloat multiplier[" << len << "] = {";
+	recoil_pattern << len << "\n";
 
 	for (int i = 0; i < len; i++) {
-		recoil_pattern << multiplier[i] << ", ";
+		recoil_pattern << pattern[i][0] << " "; 
 	}
 
-	recoil_pattern << "};";
+	recoil_pattern << "\n";
 
+	for (int i = 0; i < len; i++) {
+		recoil_pattern << pattern[i][1] << " ";
+	}
+
+	recoil_pattern << "\n";
+
+	for (int i = 0; i < len; i++) {
+		recoil_pattern << multiplier[i] << " ";
+	}
 
 	recoil_pattern.close();
 	
