@@ -1,0 +1,5 @@
+﻿  rcs.cpp
+c:\users\henri\documents\github\c_norecoil\rcs\rcs\rcs.cpp(38): warning C4305: 'inicializando': truncamento de 'double' para 'float'
+c:\users\henri\documents\github\c_norecoil\rcs\rcs\rcs.cpp(46): warning C4244: 'argumento': conversão de 'float' para 'DWORD', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs\rcs\rcs.cpp(59): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+  rcs.vcxproj -> C:\Users\henri\Documents\GitHub\c_norecoil\rcs\Debug\rcs.exe

@@ -23,7 +23,7 @@ void SavePattern(float **pattern, int *multiplier, int len) {
 
 	recoil_pattern << "};";
 
-	recoil_pattern << "float recoil[" << len << "] = {";
+	recoil_pattern << "\n\nfloat multiplier[" << len << "] = {";
 
 	for (int i = 0; i < len; i++) {
 		recoil_pattern << multiplier[i] << ", ";
@@ -60,8 +60,6 @@ void CalculateSmooth(float *x, float *y, int *multiplier, int index) {
 
 	float mod_x = abs(*x);
 	float mod_y = abs(*y);
-
-	float ret_x, ret_y;
 
 	if (*x == 0 && *y == 0) {
 		multiplier[index] = 0;
