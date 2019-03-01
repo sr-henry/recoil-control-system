@@ -96,23 +96,23 @@ int main()
 
 	LoadParttern(&current);
 
-	cout << "[X\tY\tM]\n";
-
-	for (int i = 0; i < current.magazineSize; i++) {
-		cout << current.pattern[i][0] << "\t" << current.pattern[i][1] << "\t" << current.multiplier[i] << "\n";
-	}
+	cout << "insert to on\n";
 
 	int shot_i = 0;
 
-	Sleep(2000);
+	while (true) {
+		
+		while (GetKeyState(VK_INSERT) && GetAsyncKeyState(VK_LBUTTON) && shot_i < current.magazineSize) {
 
-	while (shot_i < current.magazineSize) {
+			MouseMove(current.pattern[shot_i][0], current.pattern[shot_i][1], current.multiplier[shot_i], CalculateDelay(3000, current.magazineSize, current.multiplier[shot_i]));
 
-		MouseMove(current.pattern[shot_i][0], current.pattern[shot_i][1], current.multiplier[shot_i], CalculateDelay(3000, current.magazineSize, current.multiplier[shot_i]));
+			shot_i++;
 
-		shot_i++;
+		}
+
+		shot_i = 0;
+
 	}
-
 
 	free(current.pattern);
 	free(current.multiplier);
