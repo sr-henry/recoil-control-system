@@ -4,118 +4,80 @@
 
 using namespace std;
 
-typedef struct {
-	int		magazineSize;
-	float	**pattern;
-	int		*multiplier;
-}weapon;
-
-
-float **StandardPattern(int magazineSize) {
-
-	int i, j;
-
-	float **m = (float**)malloc(magazineSize * sizeof(float*));
-
-	for (i = 0; i < magazineSize; i++) {
-		m[i] = (float*)malloc(2 * sizeof(float));
-		for (j = 0; j < 2; j++) {
-			m[i][j] = 0.0;
-		}
-	}
-	return m;
+float mutiplicador(DWORD dpi, DWORD sensi) {
+	return (900 * 1.5) / (dpi*sensi);
 }
-
-void LoadParttern(weapon *current) {
-
-	FILE *fp;
 	
-	errno_t err = fopen_s(&fp, "config.rcs", "r");
 
-	if (err != 0) {
-		cout << "[-] Pattern not found\n";
-		return;
-	}
-
-	cout << "[+] Pattern found\n";
-
-	int size, mult;
-
-	float cord;
-
-	fscanf_s(fp, "%d", &size);
-
-	current->magazineSize = size;
-
-	current->pattern = StandardPattern(size);
-
-	current->multiplier = (int *)malloc(size * sizeof(int));
-
-	for (int i = 0; i < size; i++) {
-		fscanf_s(fp, "%f", &cord);
-		current->pattern[i][0] = cord;
-	}
-
-	for (int i = 0; i < size; i++) {
-		fscanf_s(fp, "%f", &cord);
-		current->pattern[i][1] = cord;
-	}
-
-	for (int i = 0; i < size; i++) {
-		fscanf_s(fp, "%d", &mult);
-		current->multiplier[i] = mult;
-	}
-
-	fclose(fp);
-
+DWORD calculate_time(DWORD rpm) {
+	return (60*1000)/rpm;
 }
 
-void MouseMove(float Dx, float Dy, int M, float T) {
-	int count = 0;
-	while (count != M) {
-		mouse_event(MOUSEEVENTF_MOVE, Dx, Dy, 0, 0);
-		Sleep(T);
-		count++;
+
+DWORD recoil[30][2] = {
+{0,0},
+{1,45},
+{1,52},
+{4,73},
+{11,84},
+{24,85},
+{21,76},
+{1,51},
+{-34,34},
+{-60,17},
+{-49,12},
+{-27,10},
+{-30,7},
+{-24,3},
+{15,14},
+{57,7},
+{56,13},
+{66,17},
+{66,-1},
+{40,-2},
+{13,-1},
+{-6,11},
+{0,12},
+{7,12},
+{11,8},
+{-8,5},
+{-35,-4},
+{-73,-12},
+{-86,-23}
+};
+
+void Transform(float m) {
+	int len = sizeof(recoil) / sizeof(float) / 2;
+	for (int i = 0; i < len; i++) {
+		recoil[i][0] = recoil[i][0] * m;
+		recoil[i][1] = recoil[i][1] * m;
 	}
-}
-
-float CalculateTick(int rpm, int magazineSize, float multiplier) {
-	float tick = (((magazineSize * 60 * 1000) / rpm) / magazineSize) / multiplier;
-	return tick;
-}
-
-DWORD CalculateDelay(int gunTime, int len, float M) {
-	DWORD result = (gunTime / len) / M;
-	return result;
 }
 
 int main()
 {
 
-	weapon current;
+	int shot = 0;
 
-	LoadParttern(&current);
+	DWORD stick = calculate_time(600);
 
-	cout << "insert to on\n";
+	//float mult = 1.4855;//mutiplicador(900, 1);
 
-	int shot_i = 0;
+	
+	//Sleep(2000);
 
 	while (true) {
-		
-		while (GetKeyState(VK_INSERT) && GetAsyncKeyState(VK_LBUTTON) && shot_i < current.magazineSize) {
 
-			MouseMove(current.pattern[shot_i][0], current.pattern[shot_i][1], current.multiplier[shot_i], CalculateDelay(3000, current.magazineSize, current.multiplier[shot_i]));
-
-			shot_i++;
-
+		while (GetAsyncKeyState(VK_LBUTTON) && shot < 30) {
+			//mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+			//mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+			mouse_event(MOUSEEVENTF_MOVE, recoil[shot][0], recoil[shot][1], 0, 0);
+			Sleep(stick);
+			shot++;
 		}
 
-		shot_i = 0;
-
+		shot = 0;
 	}
-
-	free(current.pattern);
-	free(current.multiplier);
 
 	return 0;
 }
