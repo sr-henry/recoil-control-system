@@ -1,51 +1,94 @@
-import win32api
-import win32con
-import winsound
 import time
+import win32api
+import win32gui
+import win32con
+from winsound import Beep
 
-def rastreamento():
+info = '''
+            [*] Gerador de Pradrao de Recoil p/ RCS
+            [?] Como usar:
+                1. Abra uma img como o padrão do recoil;
+                2. Ative o programa;
+                3. Clique nos tiros da img;
 
-    print("Iniciando\n")
+            [~]F4 : Ativar | Desativar
+            [-]F10 - Sair  
+            '''
 
-    fp = open("padrao.txt", "w")
+F4 = win32con.VK_F4
+F10 = win32con.VK_F10
+
+def MarckShot(x, y):
+    dc = win32gui.GetDC(0)
+    green = win32api.RGB(0, 255, 0)
+    for i in range(0, 10):
+        try:
+            win32gui.SetPixel(dc, x - i, y, green)
+            win32gui.SetPixel(dc,x + i, y, green)
+            win32gui.SetPixel(dc, x, y - i, green)
+            win32gui.SetPixel(dc, x , y+i, green)
+        except Exception as err:
+            print('Fora dos limites da Tela:\n' + str(err))
+
+def Tracking(compensation):
+
+    track = False
 
     old_x = 0
     old_y = 0
 
-    while(True):
-        time.sleep(0.2)
-        if (win32api.GetAsyncKeyState(win32con.VK_LBUTTON)):
-            winsound.Beep(1800, 150)
-            pos = win32api.GetCursorPos()
-            if (old_x == 0 and old_y == 0):
-                old_x = pos[0]
-                old_y = pos[1]
-                dx = 0
-                dy = 0
-            else:
-                dx = int((pos[0] - old_x)+1)
-                dy = int((pos[1] - old_y)+1)
-                old_x = pos[0]
-                old_y = pos[1]
+    with open('config.txt', 'w') as config:
 
-            print("(" + str(dx) +","+str(dy)+"),")
+        while (True):
 
-            fp.write("(" + str(dx) +","+str(dy)+"),\n")
-        
-        if (not win32api.GetKeyState(win32con.VK_INSERT)):
-            break
+            if (win32api.GetAsyncKeyState(F10)):
+                print('\n[-] Exit')
+                break
 
-    fp.close()
+            if (win32api.GetAsyncKeyState(F4)):
+                track = not track
+                if (track):
+                    print('\n[+] Start Tracking')
+                else:
+                    print('\n[-] Stop Tracking')
+                time.sleep(0.2)
 
-    return True
+            if (win32api.GetAsyncKeyState(win32con.VK_LBUTTON) and track):
+
+                Beep(2000, 100)
+
+                pos = win32api.GetCursorPos()
+
+                MarckShot(pos[0], pos[1])
+
+                if (old_x == 0 and old_y ==0):
+                    dx = 0
+                    dy = 0
+                    old_x = pos[0]
+                    old_y = pos[1]
+
+                else:
+                    dx = ((pos[0] - old_x) + 1) * compensation
+                    dy = ((pos[1] - old_y) + 1) * compensation
+                    old_x = pos[0]
+                    old_y = pos[1]
+
+                config.write('(' + str(dx) + ',' + str(dy) +'),\n')
+
+                print('\tx: ' + str(dx) + ' :: y: ' + str(dy))
+
+                time.sleep(0.2)
+
+            time.sleep(0.1)
+
+        config.close()
 
 
+def main():
 
-print("insert para iniciar o rastreamento")
+    print(info)
 
-while(True):
-    if (win32api.GetKeyState(win32con.VK_INSERT)):
-        if (rastreamento()):
-            break
+    Tracking(1)
 
-print("fim")
+
+main()
