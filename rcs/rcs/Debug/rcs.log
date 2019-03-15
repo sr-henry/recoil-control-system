@@ -1,0 +1,6 @@
+﻿  rcs.cpp
+c:\users\henri\documents\github\c_norecoil\rcs\rcs\rcs.cpp(8): warning C4244: 'return': conversão de 'double' para 'float', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs\rcs\rcs.cpp(47): warning C4838: a conversão de 'int' em 'DWORD' requer uma conversão de restrição
+c:\users\henri\documents\github\c_norecoil\rcs\rcs\rcs.cpp(52): warning C4244: '=': conversão de 'float' para 'DWORD', possível perda de dados
+c:\users\henri\documents\github\c_norecoil\rcs\rcs\rcs.cpp(53): warning C4244: '=': conversão de 'float' para 'DWORD', possível perda de dados
+  rcs.vcxproj -> C:\Users\henri\Documents\GitHub\c_norecoil\rcs\Debug\rcs.exe
