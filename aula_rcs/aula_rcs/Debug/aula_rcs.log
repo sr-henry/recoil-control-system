@@ -1,0 +1,4 @@
+﻿  aula_rcs.cpp
+c:\users\henri\desktop\aula_rcs\aula_rcs\aula_rcs.cpp(27): warning C4305: 'argumento': truncamento de 'double' para 'float'
+c:\users\henri\desktop\aula_rcs\aula_rcs\aula_rcs.cpp(53): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+  aula_rcs.vcxproj -> C:\Users\henri\Desktop\aula_rcs\Debug\aula_rcs.exe
